@@ -102,7 +102,8 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 
   <?php
   include "conn.php";
-  $sql="SELECT * FROM `order_car` WHERE res=1 ";
+  $email=$_SESSION['email'];
+  $sql="SELECT * FROM `order_car` WHERE res=1 AND email_owner='$email'";
   $result=mysqli_query($conn,$sql);
   while($row=mysqli_fetch_assoc($result)){
 
@@ -121,6 +122,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     <td>
 
     <button type="submit"  class='btn btn-outline-danger my-2'><a class="text-gray" style="text-decoration:none;"  href="operations/cancel.php?id=<?php echo $row['id'];?>">Cancel</a></button> 
+   
 
     </td>
   </tr>
