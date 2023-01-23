@@ -27,6 +27,45 @@
 <style>
     *{font-family: 'Oxygen', sans-serif;}
 </style>
+
+<script type="text/javascript">
+if(document.getElementById('email_login').value=""){
+   document.getElementById('err').value="Plese Enter the Email";
+}
+
+
+ function empty() {
+           
+             if (document.getElementById('email_login').value == "") {
+                document.getElementById("err").innerHTML = "Plese Enter the Email";
+                event.preventDefault();
+            }else if (document.getElementById('category_login').value == "") {
+                document.getElementById("err").innerHTML = "Please Select the category";
+                event.preventDefault();
+            }else if (document.getElementById('pass_login').value == "") {
+                document.getElementById("err").innerHTML = "Enter the Valid Password";
+                event.preventDefault();
+            }
+ }
+  function empty_signup() {
+           if(document.getElementById('name').value == ""){
+                document.getElementById("err1").innerHTML = "Plese Enter the Name";
+                event.preventDefault();
+               
+           } else if (document.getElementById('email').value == "") {
+                document.getElementById("err1").innerHTML = "Plese Enter the Email";
+                event.preventDefault();
+            }else if (document.getElementById('category').value == "") {
+                document.getElementById("err1").innerHTML = "Please Select the category";
+                event.preventDefault();
+            }else if (document.getElementById('pass').value == "") {
+                document.getElementById("err1").innerHTML = "Enter the Valid Password";
+                event.preventDefault();
+            }
+ }
+    
+    
+</script>
 </head>
 
 <body>
@@ -100,16 +139,17 @@
                 <div class="modal-body">
                     <div class="container">
                         <form action="login.php" method="POST">
+                            <small id="err" class="form-text text-danger font-weight-bold text-center"></small>
                             <div class="form-group">
-                                <label for="email">Email address</label>
-                                <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp"
+                                <label for="email_login">Email address</label>
+                                <input type="email_login" class="form-control" name="email" id="email_login" aria-describedby="emailHelp"
                                     placeholder="Enter email">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                <small id="emailhelp" class="form-text text-muted">We'll never share your email with
                                     anyone else.</small>
                             </div>
                             <div class="form-group">
-                                <label for="category">Who Are You ?</label>
-                                <select class="" id="category" name="category" class="form-control">
+                                <label for="category_login">Who Are You ?</label>
+                                <select class="" id="category_login" name="category" class="form-control">
 
                                     <option value="individual" selected>Individual</option>
                                     <option value="agency">Agency</option>
@@ -120,12 +160,12 @@
 
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" name="pass" class="form-control" id="exampleInputPassword1"
+                                <label for="pass_login">Password</label>
+                                <input type="password" name="pass" class="form-control" id="pass_login"
                                     placeholder="Password">
                             </div>
                            
-                            <button type="submit" class="btn btn-primary">LogIn</button>
+                            <button type="submit" onclick="empty()" class="btn btn-primary">LogIn</button>
                         </form>
                     </div>
 
@@ -158,6 +198,7 @@
 
                     <div class="container">
                         <form method="POST" action="signup.php">
+                             <small id="err1" class="form-text text-danger font-weight-bold text-center"></small>
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp"
@@ -185,12 +226,12 @@
 
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" name="pass" class="form-control" id="exampleInputPassword1"
+                                <label for="pass">Password</label>
+                                <input type="password" name="pass" class="form-control" id="pass"
                                     placeholder="Password">
                             </div>
                            
-                            <button type="submit" class="btn btn-primary">SignUp</button>
+                            <button type="submit" onclick="empty_signup()" class="btn btn-primary">SignUp</button>
                         </form>
                     </div>
                 </div>
@@ -306,6 +347,7 @@
                             <input type="hidden" name="email" value="<?php echo $email ?>">
                             <input type="hidden"  name="car_model" value="<?php echo $row['model'];?>">
                             <input type="hidden"  name="car_number" value="<?php echo $row['vnumber'];?>">
+                             <input type="hidden"  name="email_owner" value="<?php echo $row['email'];?>">
                          
                             
                             <div class="form-group" >
@@ -330,9 +372,31 @@
                             <div class="form-group">
 
                             <label for="date">Choose start date</label>
-                            <input type="date" id="date" name="date" min="2018-01-01" max="2200-12-01" style="padding:5px 20px; border: 2px solid white; cursor:pointer; color:#fff; background-color: #9bbfeb; ">
+                           
+                            <input type="date" id="date" name="date" min="2023-01-23" max="2200-12-01" style="padding:5px 20px; border: 2px solid white; cursor:pointer; color:#fff; background-color: #9bbfeb; ">
 
                             </div>
+                             <script type="text/javascript">
+                             
+                            const d = new Date();
+                            let day = d.getDate();
+                               if(day<10)
+                            {
+                                day.toString();
+                                day="0"+day;
+                            }
+                            let month = d.getMonth()+1;
+                             if(month<10)
+                            {
+                                month.toString();
+                                month="0"+month;
+                            }
+                            let year = d.getFullYear();
+                         
+                            document.getElementByid("date").min=year+'-'+month+'-'+day;
+                            
+                            
+                            </script>
 
                              <button type="submit" class="btn btn-success"> Rent Car</button>
 
