@@ -164,8 +164,10 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
   <tbody>
 
   <?php
+  
   include "conn.php";
-  $sql="SELECT * FROM `vehicles`";
+  $email=$_SESSION['email'];
+  $sql="SELECT * FROM `vehicles` WHERE email='$email'";
   $result=mysqli_query($conn,$sql);
   while($row=mysqli_fetch_assoc($result)){
 
