@@ -53,6 +53,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         ?>
         <script type="text/javascript">
             alert("Please Enter Valid Email");
+            window.location.href="index.php";
 
             </script>
 
@@ -103,7 +104,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         ?>
         <script type="text/javascript">
             alert("Please Enter Valid Email");
-
+                  window.location.href="index.php";
             </script>
 
         <?php
